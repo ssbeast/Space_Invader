@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -10,13 +11,14 @@ pygame.display.set_icon(icon)
 
 playerImg = pygame.image.load('img/player.png')
 playerX = 370
-playerY = 520
+playerY = 480
 playerX_change = 0
 
 enemyImg = pygame.image.load('img/alien.png')
-enemyX = 370
-enemyY = 50
-playerX_change = 0
+enemyX = random.randint(0,800)
+enemyY = random.randint(50,150)
+enemyX_change = 0.3
+enemyY_change = 40
 
 def player(x,y):
     screen.blit(playerImg,(x,y))
@@ -48,6 +50,16 @@ while running:
         playerX = 0
     elif playerX >= 736 :
         playerX = 736
+
+    enemyX += enemyX_change
+
+    if enemyX <= 0 :
+        enemyX_change = 0.3
+        enemyY += enemyY_change
+    elif enemyX >= 736 :
+        enemyX_change = -0.3
+        enemyY += enemyY_change
+
 
     player(playerX,playerY)
     enemy(enemyX,enemyY)
