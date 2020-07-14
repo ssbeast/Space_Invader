@@ -18,16 +18,16 @@ playerY = 480
 playerX_change = 0
 
 enemyImg = pygame.image.load('img/alien.png')
-enemyX = random.randint(0,800)
+enemyX = random.randint(0,735)
 enemyY = random.randint(50,150)
-enemyX_change = 2
+enemyX_change = 1.5
 enemyY_change = 40
 
 bulletImg = pygame.image.load('img/bullet.png')
 bulletX = 0
 bulletY = 480
 bulletX_change = 0
-bulletY_change = 10
+bulletY_change = 5
 bullet_state = "ready"
 
 score = 0
@@ -62,9 +62,9 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerX_change = -3
+                playerX_change = -2
             if event.key == pygame.K_RIGHT:
-                playerX_change = 3
+                playerX_change = 2
             if event.key == pygame.K_SPACE:
                 if bullet_state is "ready":
                     bulletX = playerX
@@ -84,10 +84,10 @@ while running:
     enemyX += enemyX_change
 
     if enemyX <= 0 :
-        enemyX_change = 2
+        enemyX_change = 1.5
         enemyY += enemyY_change
     elif enemyX >= 736 :
-        enemyX_change = -2
+        enemyX_change = -1.5
         enemyY += enemyY_change
  
     if bulletY <= 0:
@@ -103,7 +103,9 @@ while running:
         bulletY = 480
         bullet_state = "ready"
         score += 1
-        
+        enemyX = random.randint(0,735)
+        enemyY = random.randint(50,150)
+
 
     player(playerX,playerY)
     enemy(enemyX,enemyY)
